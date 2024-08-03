@@ -12,7 +12,7 @@ submit.addEventListener('click', onSubmit);
 
 function onSubmit(evt) {
   evt.preventDefault();
-  console.log(evt);
+  // console.log(evt);
 
   let { delay, step, amount } = formEl;
   delay = Number(delay.value);
