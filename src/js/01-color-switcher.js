@@ -15,19 +15,24 @@ const btnStop = document.querySelector('button[data-stop]');
 // console.log(btnStop);
 
 let timerId = null;
+let isActive = false;
 
-btnStop.disabled = 'true';
+btnStop.disabled = true;
 
 btnStart.addEventListener('click', () => {
-  timerId = setInterval(() => {
-    document.body.style.backgroundColor = getRandomHexColor();
-    btnStart.disabled = 'true';
-    btnStop.removeAttribute('disabled');
-  }, 1000);
+  if (!isActive) {
+    isActive = true;
+    timerId = setInterval(() => {
+      document.body.style.backgroundColor = getRandomHexColor();
+      btnStart.disabled = 'true';
+      btnStop.removeAttribute('disabled');
+    }, 1000);
+  }
 });
 
 btnStop.addEventListener('click', () => {
+  isActive = false;
   clearInterval(timerId);
   btnStart.removeAttribute('disabled');
-  btnStop.disabled = 'true';
+  btnStop.disabled = true;
 });
